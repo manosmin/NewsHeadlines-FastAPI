@@ -23,6 +23,6 @@ This project combines the power of Python and FastAPI to provide users with up-t
 To deploy this project with Docker run
 
 ```bash
-  docker build -t fast-news-api
-  docker run -d -p 5000:5000
+  docker build -t fast-news-api . 
+  docker run -d -p 5000:5000 fast-news-api 
 ```

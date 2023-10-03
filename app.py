@@ -1,6 +1,7 @@
 from fastapi import FastAPI, HTTPException
 import requests
 from pymongo import MongoClient
+from config import *
 
 app = FastAPI()
 
@@ -11,8 +12,8 @@ db = mongo_client.news
 @app.get('/headlines')
 def get_trending():
     try:
+        news_api_key = config_api_key # Add your API Key here
         # API Query for the most recent news headlines
-        news_api_key = '193223099a8045a2b2e24e49d4788aa4'
         news_api_url = f'https://newsapi.org/v2/top-headlines?country=us&apiKey={news_api_key}'
         response = requests.get(news_api_url)
         response.raise_for_status()  # Raise an exception if there's an HTTP error
@@ -28,8 +29,8 @@ def get_trending():
 @app.get('/headlines/{user_q}')
 def get_trending_with_query(user_q: str):
     try:
+        news_api_key = config_api_key # Add your API Key here
         # API Query for the most recent news headlines for user's specified query
-        news_api_key = '193223099a8045a2b2e24e49d4788aa4'
         news_api_url = f'https://newsapi.org/v2/top-headlines?q={user_q}&apiKey={news_api_key}'
         response = requests.get(news_api_url)
         response.raise_for_status()  # Raise an exception if there's an HTTP error
