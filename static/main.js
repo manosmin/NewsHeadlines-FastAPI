@@ -21,24 +21,24 @@ document.addEventListener('DOMContentLoaded', () => {
                         const articleElement = document.createElement('div');
                         articleElement.className = 'article';
 
-                        const titleElement = document.createElement('h2');
+                        const titleElement = document.createElement('h4');
                         titleElement.textContent = article.title;
 
                         const descriptionElement = document.createElement('p');
                         descriptionElement.textContent = article.description;
                         
-                        urlElement = document.createElement('a');
+                        const urlElement = document.createElement('a');
                         urlElement.textContent = 'Read More';
                         urlElement.href = article.url;
                         urlElement.target = '_blank'; // Open link in a new tab
 
                         const publishedAtElement = document.createElement('p');
                         const publishedDate = new Date(article.publishedAt);
-                        publishedAtElement.textContent = 'Published At: ' + publishedDate.toLocaleString('el-GR');
+                        publishedAtElement.textContent = article.author + ' ' + article.source.id + ' ' + publishedDate.toLocaleString('en-GB', { timeZone: 'Europe/Athens' });
 
                         articleElement.appendChild(titleElement);
-                        articleElement.appendChild(descriptionElement);
                         articleElement.appendChild(publishedAtElement);
+                        articleElement.appendChild(descriptionElement);
                         articleElement.appendChild(urlElement);
 
                         newsList.appendChild(articleElement);
