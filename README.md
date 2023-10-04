@@ -27,3 +27,7 @@ To deploy this project with Docker run
   docker build -t fast-news-api . 
   docker run -d -p 5000:5000 fast-news-api 
 ```
+
+## Screenshots
+
+![Home](https://github.com/manosmin/Headlines-FastAPI/blob/master/screenshots/home.png)
