@@ -1,7 +1,8 @@
 from fastapi import FastAPI, HTTPException
 import requests
 from pymongo import MongoClient
-from config import *
+from config import API_KEY
+import uvicorn
 
 app = FastAPI()
 
@@ -12,9 +13,8 @@ db = mongo_client.news
 @app.get('/headlines')
 def get_trending():
     try:
-        news_api_key = config_api_key # Add your API Key here
         # API Query for the most recent news headlines
-        news_api_url = f'https://newsapi.org/v2/top-headlines?country=us&apiKey={news_api_key}'
+        news_api_url = f'https://newsapi.org/v2/top-headlines?country=US&apiKey={API_KEY}'
         response = requests.get(news_api_url)
         response.raise_for_status()  # Raise an exception if there's an HTTP error
         data = response.json()
@@ -29,9 +29,8 @@ def get_trending():
 @app.get('/headlines/{user_q}')
 def get_trending_with_query(user_q: str):
     try:
-        news_api_key = config_api_key # Add your API Key here
         # API Query for the most recent news headlines for user's specified query
-        news_api_url = f'https://newsapi.org/v2/top-headlines?q={user_q}&apiKey={news_api_key}'
+        news_api_url = f'https://newsapi.org/v2/top-headlines?q={user_q}&apiKey={API_KEY}'
         response = requests.get(news_api_url)
         response.raise_for_status()  # Raise an exception if there's an HTTP error
         data = response.json()
@@ -63,5 +62,4 @@ def insert_into_mongodb(data):
         raise HTTPException(status_code=500, detail="Failed to insert data into MongoDB")
 
 if __name__ == '__main__':
-    import uvicorn
     uvicorn.run(app, host='0.0.0.0', port=5000)
