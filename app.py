@@ -16,7 +16,7 @@ db = mongo_client.news
 def get_trending():
     try:
         # API Query for the most recent news headlines
-        news_api_url = f'https://newsapi.org/v2/top-headlines?country=US&apiKey={API_KEY}'
+        news_api_url = f'https://newsapi.org/v2/top-headlines?country=GR&apiKey={API_KEY}'
         response = requests.get(news_api_url)
         response.raise_for_status()  # Raise an exception if there's an HTTP error
         data = response.json()
@@ -32,7 +32,7 @@ def get_trending():
 def get_trending_with_query(user_q: str):
     try:
         # API Query for the most recent news headlines for user's specified query
-        news_api_url = f'https://newsapi.org/v2/top-headlines?q={user_q}&apiKey={API_KEY}'
+        news_api_url = f'https://newsapi.org/v2/top-headlines?country=GR&q={user_q}&apiKey={API_KEY}'
         response = requests.get(news_api_url)
         response.raise_for_status()  # Raise an exception if there's an HTTP error
         data = response.json()

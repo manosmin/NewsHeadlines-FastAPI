@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                     descriptionElement.textContent = article.description;
 
                     const urlElement = document.createElement('a');
-                    urlElement.textContent = 'Read More';
+                    urlElement.textContent = 'Διαβάστε Περισσότερα';
                     urlElement.href = article.url;
                     urlElement.target = '_blank'; // Open link in a new tab
 
