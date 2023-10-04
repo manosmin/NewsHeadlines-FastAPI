@@ -26,9 +26,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
                         const descriptionElement = document.createElement('p');
                         descriptionElement.textContent = article.description;
+                        
+                        urlElement = document.createElement('a');
+                        urlElement.textContent = 'Read More';
+                        urlElement.href = article.url;
+                        urlElement.target = '_blank'; // Open link in a new tab
+
+                        const publishedAtElement = document.createElement('p');
+                        const publishedDate = new Date(article.publishedAt);
+                        publishedAtElement.textContent = 'Published At: ' + publishedDate.toLocaleString('el-GR');
 
                         articleElement.appendChild(titleElement);
                         articleElement.appendChild(descriptionElement);
+                        articleElement.appendChild(publishedAtElement);
+                        articleElement.appendChild(urlElement);
 
                         newsList.appendChild(articleElement);
                     });
