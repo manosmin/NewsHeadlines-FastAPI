@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
                     const publishedAtElement = document.createElement('p');
                     const publishedDate = new Date(article.publishedAt);
-                    publishedAtElement.textContent = article.author + ' ' + article.source.id + ' ' + publishedDate.toLocaleString('en-GB', { timeZone: 'Europe/Athens' });
+                    publishedAtElement.textContent = article.source.id + ' ' + publishedDate.toLocaleString('en-GB', { timeZone: 'Europe/Athens' });
 
                     articleElement.appendChild(titleElement);
                     articleElement.appendChild(publishedAtElement);
