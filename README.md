@@ -11,9 +11,9 @@ This project combines the power of Python and FastAPI to provide users with up-t
 - Users can access headlines or perform custom searches.
 ## Tech Stack
 
-**Back End:** Python, MongoDB
+**Front End:** Javascript, HTML, Bootstrap 4, jQuery <br>
 
-**Web Frameworks:** FastAPI
+**Back End:** Python, FastAPI, MongoDB <br>
 
 **Tools:** Docker
 
