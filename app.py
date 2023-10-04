@@ -1,13 +1,15 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Request
+from fastapi.staticfiles import StaticFiles
+from fastapi.templating import Jinja2Templates
 import requests
 from pymongo import MongoClient
-from config import API_KEY
+from config import API_KEY, MONGO_URL
 import uvicorn
 
 app = FastAPI()
 
 # Initialize MongoDB client
-mongo_client = MongoClient('mongodb://localhost:27017/')
+mongo_client = MongoClient(MONGO_URL)
 db = mongo_client.news
 
 @app.get('/headlines')
@@ -60,6 +62,17 @@ def insert_into_mongodb(data):
             )
     except Exception as e:
         raise HTTPException(status_code=500, detail="Failed to insert data into MongoDB")
+
+
+# Serve static files (HTML, JavaScript, etc.)
+app.mount("/static", StaticFiles(directory="static"), name="static")
+
+# Initialize templates for HTML rendering
+templates = Jinja2Templates(directory="templates")
+
+@app.get("/")
+async def read_root(request: Request):
+    return templates.TemplateResponse("index.html", {"request": request})
 
 if __name__ == '__main__':
     uvicorn.run(app, host='0.0.0.0', port=5000)
