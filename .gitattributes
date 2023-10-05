@@ -1,4 +1,1 @@
-*.python linguist-detectable=true
-*.html linguist-detectable=false
-*.javascript linguist-detectable=false
-*.dockerfile linguist-detectable=false
+* linguist-language=Python
