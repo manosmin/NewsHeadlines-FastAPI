@@ -20,6 +20,8 @@ This project combines the power of Python and FastAPI to provide users with up-t
 
 ## Deployment
 
+You MUST create a `config.py` file to store your `MONGO_URL` and `API_KEY`.<br>
+
 To deploy this project with Docker run
 
 ```bash
