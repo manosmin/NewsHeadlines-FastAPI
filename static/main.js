@@ -32,6 +32,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     const descriptionElement = document.createElement('p');
                     descriptionElement.textContent = article.description;
 
+                    const sourceIdElement = document.createElement('p');
+                    sourceIdElement.textContent = article.source.id;
+
                     const urlElement = document.createElement('a');
                     urlElement.textContent = 'Read More';
                     urlElement.href = article.url;
@@ -39,14 +42,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     const publishedAtElement = document.createElement('p');
                     const publishedDate = new Date(article.publishedAt);
-                    publishedAtElement.textContent = article.source.id + ' ' + publishedDate.toLocaleString('en-GB', { timeZone: 'Europe/Athens' });
+                    publishedAtElement.textContent = publishedDate.toLocaleString('en-GB', { timeZone: 'Europe/Athens' });
 
                     articleElement.appendChild(titleElement);
                     articleElement.appendChild(publishedAtElement);
+                    articleElement.appendChild(sourceIdElement);
                     articleElement.appendChild(descriptionElement);
                     articleElement.appendChild(urlElement);
 
-                    newsList.appendChild(articleElement);
+                    const cardItemElement = document.createElement('div');
+                    cardItemElement.className = 'card-body';
+
+                    cardItemElement.appendChild(articleElement);
+                    newsList.appendChild(cardItemElement);
                     });
                 } else {
                     newsList.innerHTML = 'No results found.';

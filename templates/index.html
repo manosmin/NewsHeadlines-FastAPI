@@ -3,68 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trending News Headlines</title>
+    <title>NewsAPI Headlines</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
     <div class="container">
-        <h1>Trending News Headlines</h1>
-
-        <form id="searchForm">
-
-                <div class="form-group">
-                    <label for="searchInput">Query: </label>
-                    <input type="text" class="form-control" id="searchInput" placeholder="Enter your query">
-                </div>
-
-            <div class="form-row">
-                <div class="form-group col-md-4">
-                    <label for="countrySelect">Country: </label>
-                    <select class="form-control" id="countrySelect">
-                        <option value="">Any</option>
-                        <option value="gr">Greece</option>
-                        <option value="us">United States</option>
-                        <option value="gb">Great Britain</option>
-                        <option value="es">Spain</option>
-                        <option value="it">Italy</option>
-                        <option value="fr">France</option>
-                        <option value="cn">China</option>
-                        <option value="jp">Japan</option>
-                        <option value="br">Brazil</option>
-                        <option value="au">Australia</option>
-                    </select>
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="categorySelect">Category: </label>
-                    <select class="form-control" id="categorySelect">
-                        <option value="">Any</option>
-                        <option value="general">General</option>
-                        <option value="business">Business</option>
-                        <option value="Entertainment">Entertainment</option>
-                        <option value="health">Health</option>
-                        <option value="science">Science</option>
-                        <option value="sports">Sports</option>
-                        <option value="technology">Technology</option>
-                    </select>
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="pageSizeSelect">Page Size: </label>
-                    <select class="form-control" id="pageSizeSelect">
-                        <option value="20">20</option>
-                        <option value="50">50</option>
-                        <option value="100">100</option>
-                    </select>
-                </div>  
+        <div class="card-header">
+            <h1>NewsAPI Headlines</h1>
+        </div>
+        <br>
+        <div class="card">
+            <div class="card-body">
+        <form>
+            <div class="form-group">
+              <input type="text" class="form-control" id="searchInput" placeholder="Query">
+              <small class="form-text text-muted">Keywords or a phrase to search for.</small>
             </div>
-            
+            <div class="form-group">
+              <input type="text" class="form-control" id="countrySelect" placeholder="Country">
+              <small class="form-text text-muted">The 2-letter ISO 3166-1 code of the country you want to get headlines for.</small>
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" id="categorySelect" placeholder="Category">
+              <small class="form-text text-muted">The category you want to get headlines for.</small>
+            </div>
+            <div class="form-group">
+                <input type="number" value="20" min="20" max="100" class="form-control" id="pageSizeSelect" placeholder="Page Size">
+                <small class="form-text text-muted">The number of results to return per page (request).</small>
+            </div>
             <button type="button" class="btn btn-primary" id="searchButton">Search</button>
         </form>
-
-        <div id="newsList">
-            <!-- News headlines will be displayed here -->
+            </div>
         </div>
+        <br>
+        <div class="card" id="newsList"><br></div>
     </div>
-
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
