@@ -12,28 +12,36 @@ app = FastAPI()
 mongo_client = MongoClient(MONGO_URL)
 db = mongo_client.news
 
-@app.get('/headlines')
-def get_trending():
+@app.get('/headlines/')
+def get_trending(query: str, country: str, category: str, pageSize: int):
     try:
-        # API Query for the most recent news headlines
-        news_api_url = f'https://newsapi.org/v2/top-headlines?country=GR&apiKey={API_KEY}'
-        response = requests.get(news_api_url)
-        response.raise_for_status()  # Raise an exception if there's an HTTP error
-        data = response.json()
+        # Construct the payload for the API query
+        payload = {
+            'q': query,
+            'category': category,
+            'country': country,
+            'apiKey': API_KEY,
+            'sources': [],
+            'pageSize': pageSize,
+        }
 
-        # Insert the data into MongoDB
-        insert_into_mongodb(data)
+        # Include the 'query' parameter if provided
+        if query:
+            payload['q'] = query
 
-        return data
-    except requests.exceptions.RequestException as e:
-        raise HTTPException(status_code=500, detail="Failed to fetch data from News API")
+        # Include the 'category' parameter if provided
+        if category:
+            payload['category'] = category
 
-@app.get('/headlines/{user_q}')
-def get_trending_with_query(user_q: str):
-    try:
+        # Include the 'country' parameter if provided
+        if country:
+            payload['country'] = country
+
+        
         # API Query for the most recent news headlines for user's specified query
-        news_api_url = f'https://newsapi.org/v2/top-headlines?country=GR&q={user_q}&apiKey={API_KEY}'
-        response = requests.get(news_api_url)
+        news_api_url = f'https://newsapi.org/v2/top-headlines'
+        response = requests.get(news_api_url, params=payload)
+        print(payload)
         response.raise_for_status()  # Raise an exception if there's an HTTP error
         data = response.json()
 
