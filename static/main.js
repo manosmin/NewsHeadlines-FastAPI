@@ -1,20 +1,29 @@
-document.addEventListener('DOMContentLoaded', async () => {
-    const searchForm = document.getElementById('searchForm');
+document.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.getElementById('searchInput');
+    const countrySelect = document.getElementById('countrySelect');
+    const categorySelect = document.getElementById('categorySelect');
+    const pageSizeSelect = document.getElementById('pageSizeSelect');
+    const searchButton = document.getElementById('searchButton');
     const newsList = document.getElementById('newsList');
 
-    const fetchData = async (query) => {
-        try {
-            const response = await fetch(`/headlines/${query}`);
-            const data = await response.json();
+    searchButton.addEventListener('click', () => {
+        const query = searchInput.value.trim();
+        const country = countrySelect.value;
+        const category = categorySelect.value;
+        const pageSize = parseInt(pageSizeSelect.value);
 
-            if (data.articles && data.articles.length > 0) {
+        
+        // Send the query to the backend
+        fetch(`/headlines/?query=${query}&country=${country}&category=${category}&pageSize=${pageSize}`)
+            .then((response) => response.json())
+            .then((data) => {
                 // Clear previous news
                 newsList.innerHTML = '';
 
-                // Display news headlines
-                data.articles.forEach((article) => {
-                    const articleElement = document.createElement('div');
+                if (data.articles && data.articles.length > 0) {
+                    // Display news headlines
+                    data.articles.forEach((article) => {
+                        const articleElement = document.createElement('div');
                     articleElement.className = 'article';
 
                     const titleElement = document.createElement('h4');
@@ -24,7 +33,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                     descriptionElement.textContent = article.description;
 
                     const urlElement = document.createElement('a');
-                    urlElement.textContent = 'Διαβάστε Περισσότερα';
+                    urlElement.textContent = 'Read More';
                     urlElement.href = article.url;
                     urlElement.target = '_blank'; // Open link in a new tab
 
@@ -38,26 +47,14 @@ document.addEventListener('DOMContentLoaded', async () => {
                     articleElement.appendChild(urlElement);
 
                     newsList.appendChild(articleElement);
-                });
-            } else {
-                newsList.innerHTML = 'No results found.';
-            }
-        } catch (error) {
-            console.error('Error fetching news data:', error);
-            newsList.innerHTML = 'An error occurred while fetching data.';
-        }
-    };
-
-    // Fetch data on page startup
-    fetchData('');
-
-    searchForm.addEventListener('submit', (event) => {
-        event.preventDefault();
-        const query = searchInput.value.trim();
-        if (query) {
-            fetchData(query);
-        } else {
-            newsList.innerHTML = 'Please enter a query.';
-        }
+                    });
+                } else {
+                    newsList.innerHTML = 'No results found.';
+                }
+            })
+            .catch((error) => {
+                console.error('Error fetching news data:', error);
+                newsList.innerHTML = 'An error occurred while fetching data.';
+            });
     });
 });
