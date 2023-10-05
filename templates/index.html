@@ -3,45 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Τίτλοι Ειδήσεων</title>
-
-    <!-- Include Bootstrap CSS -->
+    <title>Trending News Headlines</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
     <div class="container">
-        <h1 class="mt-4">Τίτλοι Ειδήσεων</h1>
+        <h1>Trending News Headlines</h1>
 
-        <form id="searchForm" class="mt-4">
-            <div class="input-group">
-                <input type="text" id="searchInput" class="form-control" placeholder="Εισάγετε τους όρους">
-                <div class="input-group-append">
-                    <button type="submit" class="btn btn-primary">Αναζήτηση</button>
+        <form id="searchForm">
+
+                <div class="form-group">
+                    <label for="searchInput">Query: </label>
+                    <input type="text" class="form-control" id="searchInput" placeholder="Enter your query">
                 </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="countrySelect">Country: </label>
+                    <select class="form-control" id="countrySelect">
+                        <option value="">Any</option>
+                        <option value="gr">Greece</option>
+                        <option value="us">United States</option>
+                        <option value="gb">Great Britain</option>
+                        <option value="es">Spain</option>
+                        <option value="it">Italy</option>
+                        <option value="fr">France</option>
+                        <option value="cn">China</option>
+                        <option value="jp">Japan</option>
+                        <option value="br">Brazil</option>
+                        <option value="au">Australia</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="categorySelect">Category: </label>
+                    <select class="form-control" id="categorySelect">
+                        <option value="">Any</option>
+                        <option value="general">General</option>
+                        <option value="business">Business</option>
+                        <option value="Entertainment">Entertainment</option>
+                        <option value="health">Health</option>
+                        <option value="science">Science</option>
+                        <option value="sports">Sports</option>
+                        <option value="technology">Technology</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="pageSizeSelect">Page Size: </label>
+                    <select class="form-control" id="pageSizeSelect">
+                        <option value="20">20</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                    </select>
+                </div>  
             </div>
+            
+            <button type="button" class="btn btn-primary" id="searchButton">Search</button>
         </form>
 
-        <!-- Fixed-size box with scrollable content -->
-        <div class="container mt-4">
-            <div class="row">
-                <div class="col">
-                    <div class="overflow-auto" style="max-height: 800px;">
-                        <div id="newsList">
-                            <!-- News headlines will be displayed here -->
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div id="newsList">
+            <!-- News headlines will be displayed here -->
         </div>
     </div>
-    </div>
 
-    <!-- Include Bootstrap JS (jQuery is a dependency) -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-    <!-- Update the script source to point to the 'static' directory -->
     <script src="/static/main.js"></script>
 </body>
 </html>
