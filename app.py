@@ -13,7 +13,7 @@ mongo_client = MongoClient(MONGO_URL)
 db = mongo_client.news
 
 @app.get('/headlines/')
-def get_trending(query: str, country: str, category: str, pageSize: int):
+def get_trending(query: str, country: str, category: str, sources: str, pageSize: int):
     try:
         # Construct the payload for the API query
         payload = {
@@ -21,7 +21,7 @@ def get_trending(query: str, country: str, category: str, pageSize: int):
             'category': category,
             'country': country,
             'apiKey': API_KEY,
-            'sources': [],
+            'sources': sources,
             'pageSize': pageSize,
         }
 
@@ -37,11 +37,18 @@ def get_trending(query: str, country: str, category: str, pageSize: int):
         if country:
             payload['country'] = country
 
+        # Include the 'pageSize' parameter if provided
+        if pageSize:
+            payload['pageSize'] = pageSize
+
+        # Include the 'sources' parameter if provided
+        if sources:
+            payload['sources'] = sources
+
         
         # API Query for the most recent news headlines for user's specified query
         news_api_url = f'https://newsapi.org/v2/top-headlines'
         response = requests.get(news_api_url, params=payload)
-        print(payload)
         response.raise_for_status()  # Raise an exception if there's an HTTP error
         data = response.json()
 

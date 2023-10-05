@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.getElementById('searchInput');
     const countrySelect = document.getElementById('countrySelect');
     const categorySelect = document.getElementById('categorySelect');
+    const sourcesSelect = document.getElementById('sourcesSelect');
     const pageSizeSelect = document.getElementById('pageSizeSelect');
     const searchButton = document.getElementById('searchButton');
     const newsList = document.getElementById('newsList');
@@ -10,11 +11,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const query = searchInput.value.trim();
         const country = countrySelect.value;
         const category = categorySelect.value;
+        const sources = sourcesSelect.value;
         const pageSize = parseInt(pageSizeSelect.value);
-
         
         // Send the query to the backend
-        fetch(`/headlines/?query=${query}&country=${country}&category=${category}&pageSize=${pageSize}`)
+        fetch(`/headlines/?query=${query}&country=${country}&category=${category}&sources=${sources}&pageSize=${pageSize}`)
             .then((response) => response.json())
             .then((data) => {
                 // Clear previous news
