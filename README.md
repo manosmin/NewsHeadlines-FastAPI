@@ -19,7 +19,7 @@ This project combines the power of Python and FastAPI to provide users with up-t
 
 
 ## Deployment
-Create a `config.py` file and initialize variables `API_KEY` (i.e. `7n6x01257610n479c1f45`) and `MONGO_URL` (i.e. `mongodb://localhost:27017/`)
+Create a `config.py` file and initialize variables `API_KEY = '...'` and `MONGO_URL = 'mongodb://localhost:27017/'` using your own key and URL accordingly.
 
 Then deploy this project with Docker by running
 
