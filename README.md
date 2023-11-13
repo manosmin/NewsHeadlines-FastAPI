@@ -30,4 +30,4 @@ To deploy this project with Docker run
 
 ## Screenshots
 
-![Home](https://github.com/manosmin/Headlines-FastAPI/blob/master/screenshots/home.png)
+![Home](https://github.com/manosmin/Headlines-FastAPI/blob/master/screenshots/home.gif)
