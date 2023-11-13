@@ -14,7 +14,7 @@
   <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">News Headlines Website</a>
+        <a class="navbar-brand" href="/">News Headlines Website</a>
         <button
           class="navbar-toggler"
           type="button"
@@ -29,14 +29,22 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="/">Home</a>
+              <button
+                class="btn"
+                type="button"
+                data-toggle="collapse"
+                data-target="#collapseForm"
+                aria-expanded="false"
+                aria-controls="collapseForm"
+              >
+                Search Filters
+              </button>
             </li>
           </ul>
         </div>
       </div>
     </nav>
     <br />
-
     <div class="container-fluid">
       <div class="card">
         <div class="card-body">
@@ -108,8 +116,7 @@
         </div>
       </div>
       <br />
-      <h2><span id="resultCount"></span></h2>
-
+      <h4><span id="resultCount"></span></h4>
       <div class="row content"></div>
     </div>
     <script
@@ -150,7 +157,8 @@
               );
               str =
                 str +
-                `<div class="card my-2 mx-4" style="width: 20rem">
+                `<div class="col-sm d-flex">
+                  <div class="card card-body flex-fill my-2" style="width: 20rem">
                       <img src="${item.urlToImage}" class="card-img-top" alt="...">
                       <div class="card-body">
                       <h5 class="card-title">${item.title}</h5>
@@ -158,7 +166,8 @@
                       <p class="card-text">${publishedDate}</p>
                       <a href="${item.url}" target="_blank" class="btn btn-primary">Read Article</a>
                       </div>
-                  </div>`;
+                  </div>
+                </div>`;
             }
             document.querySelector(".content").innerHTML = str;
           };
