@@ -19,8 +19,9 @@ This project combines the power of Python and FastAPI to provide users with up-t
 
 
 ## Deployment
+Create your `config.py` file and add your API_KEY and MONGO_URL (i.e. `mongodb://localhost:27017/`)
 
-To deploy this project with Docker run
+Then deploy this project with Docker running
 
 ```bash
   docker run -d -p 27017:27017 --name mongodb mongo 
