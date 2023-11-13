@@ -30,5 +30,7 @@ Then deploy this project with Docker by running
 ```
 
 ## Screenshots
-
-![Home](https://github.com/manosmin/Headlines-FastAPI/blob/master/screenshots/home.gif)
+*Search Filters*
+![Search Filters](https://github.com/manosmin/Headlines-FastAPI/blob/master/screenshots/ss1.png)
+*Results*
+![Results](https://github.com/manosmin/Headlines-FastAPI/blob/master/screenshots/ss2.png)
