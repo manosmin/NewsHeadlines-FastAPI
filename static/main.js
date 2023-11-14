@@ -20,7 +20,6 @@ const fetchNews = async () => {
 
   let response = await a.json();
 
-  console.log(JSON.stringify(response));
   let str = "";
   resultCount.innerHTML = response.totalResults + " Results";
   for (let item of response.articles) {
@@ -63,7 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
 searchButton.addEventListener("click", () => {
   if (pageSizeSelect.value === "") {
     showPageSizeAlert(1);
-  } else if (parseInt(pageSizeSelect.value) > 100 || pageSizeSelect.value < 100) {
+  } else if (parseInt(pageSizeSelect.value) < 20 || parseInt(pageSizeSelect.value) > 100) {
     showPageSizeAlert(2);
   } else if (
     searchInput.value === "" &&
@@ -90,7 +89,7 @@ function showPageSizeAlert(type) {
   `;
   } else if (type == 2) {
     alertDiv.innerHTML = `
-    <strong>Error!</strong> Page size must be maximum 100.
+    <strong>Error!</strong> You should select a page size between 20 and 100.
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -106,13 +105,4 @@ function showPageSizeAlert(type) {
 
   const alertContainer = document.getElementById("alertContainer");
   alertContainer.appendChild(alertDiv);
-
-  // Remove the alert after some seconds
-  setTimeout(() => {
-    alertDiv.classList.remove("show");
-    alertDiv.classList.add("fade");
-    setTimeout(() => {
-      alertContainer.removeChild(alertDiv);
-    }, 1000);
-  }, 3000);
 }
