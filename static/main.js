@@ -4,6 +4,8 @@ const categorySelect = document.getElementById("categorySelect");
 const sourcesSelect = document.getElementById("sourcesSelect");
 const pageSizeSelect = document.getElementById("pageSizeSelect");
 const searchButton = document.getElementById("searchButton");
+const alertContainer = document.getElementById("alertContainer");
+let currentAlert;
 
 const fetchNews = async () => {
   const query = searchInput.value.trim();
@@ -77,6 +79,10 @@ searchButton.addEventListener("click", () => {
 });
 
 function showPageSizeAlert(type) {
+  if (currentAlert) {
+    currentAlert.parentNode.removeChild(currentAlert);
+    currentAlert = null;
+  }
   const alertDiv = document.createElement("div");
   alertDiv.className = "alert alert-warning alert-dismissible fade show";
   alertDiv.setAttribute("role", "alert");
@@ -102,7 +108,6 @@ function showPageSizeAlert(type) {
     </button>
   `;
   }
-
-  const alertContainer = document.getElementById("alertContainer");
+  currentAlert = alertDiv;
   alertContainer.appendChild(alertDiv);
 }
