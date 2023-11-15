@@ -62,6 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 searchButton.addEventListener("click", () => {
+  removeAlertIfExists()
   if (pageSizeSelect.value === "") {
     showPageSizeAlert(1);
   } else if (parseInt(pageSizeSelect.value) < 20 || parseInt(pageSizeSelect.value) > 100) {
@@ -79,35 +80,30 @@ searchButton.addEventListener("click", () => {
 });
 
 function showPageSizeAlert(type) {
-  if (currentAlert) {
-    currentAlert.parentNode.removeChild(currentAlert);
-    currentAlert = null;
-  }
+  removeAlertIfExists();
   const alertDiv = document.createElement("div");
-  alertDiv.className = "alert alert-warning alert-dismissible fade show";
+  alertDiv.className = "alert alert-warning fade show";
   alertDiv.setAttribute("role", "alert");
   if (type == 1) {
     alertDiv.innerHTML = `
     <strong>Error!</strong> You should select a page size.
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
   `;
   } else if (type == 2) {
     alertDiv.innerHTML = `
     <strong>Error!</strong> You should select a page size between 20 and 100.
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
   `;
   } else {
     alertDiv.innerHTML = `
     <strong>Error!</strong> You should select at least one search option.
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
   `;
   }
   currentAlert = alertDiv;
   alertContainer.appendChild(alertDiv);
+}
+
+function removeAlertIfExists() {
+  if (currentAlert) {
+    currentAlert.parentNode.removeChild(currentAlert);
+    currentAlert = null;
+  }
 }
