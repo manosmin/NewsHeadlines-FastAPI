@@ -6,6 +6,7 @@ const pageSizeSelect = document.getElementById("pageSizeSelect");
 const searchButton = document.getElementById("searchButton");
 const alertContainer = document.getElementById("alertContainer");
 let currentAlert;
+const validCategories = ["business", "entertainment", "general", "health", "science", "sports", "technology", ""]
 
 const fetchNews = async () => {
   const query = searchInput.value.trim();
@@ -74,6 +75,8 @@ searchButton.addEventListener("click", () => {
     sourcesSelect.value === ""
   ) {
     showPageSizeAlert(3);
+  } else if (!validCategories.includes(categorySelect.value)) {
+    showPageSizeAlert(4);
   } else {
     fetchNews();
   }
@@ -92,9 +95,13 @@ function showPageSizeAlert(type) {
     alertDiv.innerHTML = `
     <strong>Error!</strong> You should select a page size between 20 and 100.
   `;
-  } else {
+  } else if (type == 3) {
     alertDiv.innerHTML = `
     <strong>Error!</strong> You should select at least one search option.
+  `;
+  } else {
+    alertDiv.innerHTML = `
+    <strong>Error!</strong> You should select a category from: business, entertainment, general, health, sports, science, technology.
   `;
   }
   currentAlert = alertDiv;
